@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int bestClosingTime(string customers) {
+        int n = customers.size();
+    
+        int penalty = 0; // Initialize penalty
+        int minPenalty = penalty, minHour = 0;
+        
+        // Iterate through each hour
+        for (int hour = 1; hour <= n; hour++) {
+            int y = (customers[hour - 1] == 'Y') ? 1 : -1; // Calculate penalty change
+            penalty -= y; // Update penalty
+            
+            // Check if current penalty is less than minimum penalty
+            if (minPenalty > penalty) {
+                minPenalty = penalty;
+                minHour = hour;
+            }
+        }
+        
+        return minHour;
+    }
+};
